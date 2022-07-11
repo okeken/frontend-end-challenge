@@ -20,6 +20,10 @@ const Input = ({
         placeholder={placeholder}
         className="block w-full border p-3"
         onChange={handleChange}
+        style={{
+          borderRadius:'5px 15px 5px 15px',
+
+        }}
       />
     </>
   )

@@ -6,7 +6,7 @@ const options = {
   includeScore: false,
   keys: ['receiver', 'id', 'alias','description', 'amount', 'status'],
   minMatchCharLength:3,
-  distance:10
+  distance:10,
 }
 
 const results = (args: SearchQuery, txnList: any[], options: any) => {

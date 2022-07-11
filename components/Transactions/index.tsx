@@ -7,8 +7,8 @@ const TransactionComp = ({ data }: any) => {
     <>
       {data?.map((i: any, idx: number) => (
         <div key={idx + id}>
-          <div className="mb-6 border  ">
-            <h1 className="mb-3 p-2">{i.date}</h1>
+          <div className="mb-6 border-2 bg-white p-2 rounded-lg  transition duration-300 ease-in-out hover:scale-105">
+            <h1 className="mb-3 p-2 font-bold text-gray-500">{i.date}</h1>
             {i.data.map((i: any, idx: number) => (
               <>
                 <div
@@ -39,21 +39,27 @@ const TransactionComp = ({ data }: any) => {
                       {i.type === 'in' ? '+' : '-'} {i.amount} ETH
                     </div>
 
-                    <div className="flex items-center rounded-full border px-2 text-sm text-bold  ">
+                    <div className={`${
+                       i.status == 'pending'
+                       ? 'bg-yellow-100'
+                       : i.status == 'failed'
+                       ? 'bg-red-200'
+                       : 'bg-green-100'
+                    } flex items-center rounded-full px-3 py-1 text-sm my-1 text-bold`}>
                       <span
                         className={`${
                           i.status == 'pending'
-                            ? 'bg-yellow-400'
+                            ? 'bg-yellow-600'
                             : i.status == 'failed'
                             ? 'bg-red-600'
-                            : 'bg-green-400'
+                            : 'bg-green-600'
                         } h-2 w-2 rounded-full  opacity-75 mr-1`}
                       ></span>
                       {i.status}
                     </div>
                   </div>
                 </div>
-               <div className='ml-2'> Id: {i.id}</div>
+               <div className='ml-2 pb-1'> Id: {i.id}</div>
                 
               </>
             ))}

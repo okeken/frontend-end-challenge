@@ -75,13 +75,13 @@ Click on the `Pending`, `Success` or `Failed` Button to see corresponding status
 
 This project is bootstrapped with Nextjs. I want to make sure both the frontend and backend run on the same server, since Nextjs has the capacity for a full-stack app, I decided to go with it.
 
-## Chanllenges
+## Challenges
 
-One of the challenge I faced is formating the backend end data such that the frontend can show them grouped by the same date they occur. I solved this by
+One of the challenges I faced is formating the backend end data such that the frontend can show them grouped by the same date they occur. I solved this by
 
 - Mapping through the data and giving data on the same date a common date
 - Group the data by the common date
-- put data with the same date in an array with the key `date` and `data`
+- Put data with the same date in an array with the key `date` and `data`
 
 code location - `/utils.ts`
 function name - `normalizedTxn`

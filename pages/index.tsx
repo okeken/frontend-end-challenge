@@ -67,7 +67,7 @@ const Home: NextPage = () => {
   const _input = (
     <>
       {' '}
-      <div className="max-w-lg m-auto my-6">
+      <div className="max-w-xl m-auto my-6">
         <Input
           disabled={!loaded}
           placeholder="Search by Txn Id, Receiver Address or Alias"
@@ -89,7 +89,7 @@ const Home: NextPage = () => {
     <>
       <div className="radio-block m-auto max-w-xl flex  items-center w-full mt-6">
         <div>
-          <span className="mr-5">Status</span>
+          <span className="mr-5 text-gray-600 text-lg"><b>Status :</b></span>
           <input
             checked={filterTxn.status == 'pending'}
             type="radio"
@@ -98,7 +98,7 @@ const Home: NextPage = () => {
             value="pending"
             onChange={handleFilter}
           />
-          <label htmlFor="pending-status" className="border">
+          <label htmlFor="pending-status" className="border border-gray-400">
             Pending
           </label>
 
@@ -110,7 +110,7 @@ const Home: NextPage = () => {
             value="success"
             onChange={handleFilter}
           />
-          <label htmlFor="success-status" className="border">
+          <label htmlFor="success-status" className="border border-gray-400">
             Success
           </label>
           <input
@@ -121,7 +121,7 @@ const Home: NextPage = () => {
             value="failed"
             onChange={handleFilter}
           />
-          <label htmlFor="failed-status" className="border">
+          <label htmlFor="failed-status" className="border border-gray-400">
             Failed
           </label>
         </div>
@@ -142,7 +142,7 @@ const Home: NextPage = () => {
 
       <div className="radio-block m-auto max-w-xl flex items-center w-full mt-6">
         <div>
-          <span className="mr-5">Type</span>
+          <span className="mr-5 text-gray-600 text-l"><b>Type : </b></span>
           <input
             checked={filterTxn.type == 'in'}
             type="radio"
@@ -151,7 +151,7 @@ const Home: NextPage = () => {
             value="in"
             onChange={handleFilter}
           />
-          <label htmlFor="in-type" className="border">
+          <label htmlFor="in-type" className="border border-gray-400">
             Received
           </label>
 
@@ -163,7 +163,7 @@ const Home: NextPage = () => {
             value="out"
             onChange={handleFilter}
           />
-          <label htmlFor="out-type" className="border">
+          <label htmlFor="out-type" className="border border-gray-400">
             Sent
           </label>
         </div>
@@ -193,7 +193,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="px-4">
-        <h1 className="text-center text-4xl my-6">Transactions Lists</h1>
+        <h1 className="text-center text-4xl my-6">Transactions </h1>
 
         {_input}
         {loaded && _filters}

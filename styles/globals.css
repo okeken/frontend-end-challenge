@@ -1,18 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:ital@1&display=swap');
 .radio-block input[type='radio'] {
   display: none;
 }
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #e5e5e5;
+}
 .radio-block input[type='radio']:checked + label {
-  background-color: rgb(74 222 128);
+  background-color: #48b971;
   color: #fff;
 }
 .radio-block input[type='radio'] + label {
   cursor: pointer;
   margin-right: 1rem;
   padding: 0.2rem 0.4rem;
+  border-radius: 6px;
 }
 
 /********************
