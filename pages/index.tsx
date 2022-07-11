@@ -80,7 +80,7 @@ const Home: NextPage = () => {
         </h1>
       ) : (
         <h1 className="text-center">
-          {!!userInput.length && <>Results for &quot;{userInput}&quot;</>}
+          {!!userInput.length && <>Search results for &quot;{userInput}&quot;</>}
         </h1>
       )}
     </>

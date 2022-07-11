@@ -4,7 +4,9 @@ import { SearchQuery } from '../types'
 
 const options = {
   includeScore: false,
-  keys: ['receiver', 'id', 'alias'],
+  keys: ['receiver', 'id', 'alias','description', 'amount', 'status'],
+  minMatchCharLength:3,
+  distance:10
 }
 
 const results = (args: SearchQuery, txnList: any[], options: any) => {
@@ -25,14 +27,12 @@ const results = (args: SearchQuery, txnList: any[], options: any) => {
 export const resolvers = {
   Query: {
     transactions: (parent: any, args: SearchQuery) => {
-      // return data if there are no search query or filters
-      if (!args?.q && Object.values(args?.filter).filter(Boolean).length == 0)
-        return txnList
-      const list = txnList
-      const output = results(args, list, options)
-      return output
-
-      //return txnList
+      if(args.q || args?.filter?.status || args?.filter?.type) {
+        const list = txnList
+        const output = results(args, list, options)
+        return output
+      }
+      return txnList
     },
     count: (parent: any, args: SearchQuery) => {
       return txnList.length

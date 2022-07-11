@@ -53,6 +53,8 @@ const TransactionComp = ({ data }: any) => {
                     </div>
                   </div>
                 </div>
+               <div className='ml-2'> Id: {i.id}</div>
+                
               </>
             ))}
           </div>

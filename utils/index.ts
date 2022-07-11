@@ -1,6 +1,6 @@
 export const classNames = (
-  arrayString: string = '',
-  initClass: string = '',
+  arrayString: string = '', // component user supplied class
+  initClass: string = '',   // initial classes on our component
 ) => {
   const arrayStr = arrayString.split(',')
   const initClassArr = initClass.split(' ')
