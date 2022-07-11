@@ -6,9 +6,11 @@ export const fetchTransaction = async (
   queryWord = '',
   filter = { status: '', type: '' },
 ) => {
+
   try {
     const result = await request(
-      process.env.NEXT_GRAPHQL_URL as string,
+      'http://localhost:3000/api/graphql',
+      // process.env.NEXT_GRAPHQL_URL as string,
       txnQuery,
       {
         query: queryWord,

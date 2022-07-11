@@ -26,10 +26,11 @@ export const resolvers = {
   Query: {
     transactions: (parent: any, args: SearchQuery) => {
       // return data if there are no search query or filters
-      if (!args?.q && Object.values(args?.filter).filter(Boolean).length == 0)
-        return txnList
+      if (!args?.q && Object.values(args.filter={status:'', type:''}).filter(Boolean).length == 0) return txnList
       const output = results(args, txnList, options)
       return output
+      
+      //return txnList
     },
     count: (parent: any, args: SearchQuery) => {
       return txnList.length
