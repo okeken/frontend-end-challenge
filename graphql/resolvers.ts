@@ -13,10 +13,10 @@ const results = (args: SearchQuery, txnList: any[], options: any) => {
   const refined = result.map((i) => i.item)
   const search = args?.q?.length ? refined ?? [] : txnList
   let res = search
-  if (args?.filter?.status) {
+  if (!!args?.filter?.status) {
     res = res.filter((o) => o.status == args?.filter?.status)
   }
-  if (args?.filter?.type) {
+  if (!!args?.filter?.type) {
     res = res.filter((o) => o.type == args?.filter?.type)
   }
 
@@ -26,10 +26,12 @@ export const resolvers = {
   Query: {
     transactions: (parent: any, args: SearchQuery) => {
       // return data if there are no search query or filters
-      if (!args?.q && Object.values(args.filter={status:'', type:''}).filter(Boolean).length == 0) return txnList
-      const output = results(args, txnList, options)
+      if (!args?.q && Object.values(args?.filter).filter(Boolean).length == 0)
+        return txnList
+      const list = txnList
+      const output = results(args, list, options)
       return output
-      
+
       //return txnList
     },
     count: (parent: any, args: SearchQuery) => {

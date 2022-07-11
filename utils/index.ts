@@ -1,4 +1,3 @@
-
 export const classNames = (
   arrayString: string = '',
   initClass: string = '',
@@ -53,7 +52,7 @@ export function normalizedTxn(sortedtransactions: any[] = []) {
   return normalizedData
 }
 
-export const splitAddress = (address: string, splitDigit=7) =>
+export const splitAddress = (address: string, splitDigit = 7) =>
   `${address.split('').splice(0, splitDigit).join('')}...${address
     .split('')
     .splice(address.length - splitDigit, address.length)

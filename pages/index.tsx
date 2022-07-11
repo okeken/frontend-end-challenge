@@ -8,11 +8,6 @@ import { normalizedTxn } from '../utils'
 import TransactionComp from '../components/Transactions'
 
 const initTxnStatusCheck = {
-  pending: false,
-  success: false,
-  failed: false,
-  in: false,
-  out: false,
   status: '',
   type: '',
 }
@@ -44,10 +39,12 @@ const Home: NextPage = () => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
-        [e.target.value]: true,
       }
     })
   }
+
+  // const memoizedValue = useMemo(() => filterTxn, [filterTxn]);
+
   useEffect(() => {
     fetchData(userInput, { status, type })
   }, [status, type])
@@ -72,7 +69,7 @@ const Home: NextPage = () => {
       {' '}
       <div className="max-w-lg m-auto my-6">
         <Input
-        disabled={!loaded}
+          disabled={!loaded}
           placeholder="Search by Txn Id, Receiver Address or Alias"
           handleChange={handleChange}
         />
@@ -80,11 +77,13 @@ const Home: NextPage = () => {
       {!!(userInput.length && !data.length) ? (
         <h1 className="text-center">
           No search results for &quot;{userInput}&quot;
-        </h1> 
-      ) : <h1 className="text-center">
-       { !!userInput.length && <>Results for &quot;{userInput}&quot;</>}
-    </h1>}
-        </>
+        </h1>
+      ) : (
+        <h1 className="text-center">
+          {!!userInput.length && <>Results for &quot;{userInput}&quot;</>}
+        </h1>
+      )}
+    </>
   )
   const _filters = (
     <>
@@ -92,7 +91,7 @@ const Home: NextPage = () => {
         <div>
           <span className="mr-5">Status</span>
           <input
-            checked={filterTxn.pending}
+            checked={filterTxn.status == 'pending'}
             type="radio"
             id="pending-status"
             name="status"
@@ -104,7 +103,7 @@ const Home: NextPage = () => {
           </label>
 
           <input
-            checked={filterTxn.success}
+            checked={filterTxn.status == 'success'}
             type="radio"
             id="success-status"
             name="status"
@@ -115,7 +114,7 @@ const Home: NextPage = () => {
             Success
           </label>
           <input
-            checked={filterTxn.failed}
+            checked={filterTxn.status == 'failed'}
             type="radio"
             id="failed-status"
             name="status"
@@ -145,7 +144,7 @@ const Home: NextPage = () => {
         <div>
           <span className="mr-5">Type</span>
           <input
-            checked={filterTxn.in}
+            checked={filterTxn.type == 'in'}
             type="radio"
             id="in-type"
             name="type"
@@ -157,7 +156,7 @@ const Home: NextPage = () => {
           </label>
 
           <input
-            checked={filterTxn.out}
+            checked={filterTxn.type == 'out'}
             type="radio"
             id="out-type"
             name="type"
@@ -193,18 +192,29 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className='px-4'>
+      <div className="px-4">
         <h1 className="text-center text-4xl my-6">Transactions Lists</h1>
-   
-        
-            {_input}
-            {loaded && _filters}
-                 
 
-        <div className="max-w-xl m-auto block mt-5">
-          {_loading}
-          {_error}
-          {_data}
+        {_input}
+        {loaded && _filters}
+
+        <div className="max-w-xl m-auto block mt-12 relative">
+          {loading && (
+            <p
+              style={{
+                left: '43%',
+              }}
+              className="absolute top-18 px-3 text-white rounded-full bg-blue-200"
+            >
+              Loading...
+            </p>
+          )}
+
+          <div className={`${loading ? 'opacity-30' : ''}`}>
+            {_loading}
+            {_error}
+            {_data}
+          </div>
         </div>
       </div>
     </div>

@@ -4,13 +4,13 @@ interface Props {
   className?: string
   handleChange?: (e: any) => void
   placeholder?: string
-  disabled:boolean
+  disabled: boolean
 }
 const Input = ({
   handleChange,
   className,
   placeholder = 'search your resources',
-  disabled=false,
+  disabled = false,
   ...others
 }: Props) => {
   return (
