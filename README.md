@@ -27,11 +27,11 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-![Home](https://github.com/okeken/frontend-end-challenge/blob/public/transactions.png?raw=true)
+![Home](https://github.com/okeken/frontend-end-challenge/blob/main/public/transactions.png?raw=true)
 
 Open [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) with your browser to open the graphql playground.
 
-![Graphql Explorer](https://github.com/okeken/frontend-end-challenge/blob/public/graphqlendpoint.png?raw=true)
+![Graphql Explorer](https://github.com/okeken/frontend-end-challenge/blob/main/public/graphqlendpoint.png?raw=true)
 
 ## Search Criteria
 
@@ -69,7 +69,7 @@ Click on the `Pending`, `Success` or `Failed` Button to see corresponding status
 
 ### Sample Search
 
-![Sample Search](https://github.com/okeken/frontend-end-challenge/blob/public/searchsample.png?raw=true)
+![Sample Search](https://github.com/okeken/frontend-end-challenge/blob/main/public/searchsample.png?raw=true)
 
 ## Additional Info
 
