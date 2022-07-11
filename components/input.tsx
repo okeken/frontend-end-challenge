@@ -3,19 +3,21 @@ import {} from 'react'
 interface Props {
   className?: string
   handleChange?: (e: any) => void
-  placehlder?: string
+  placeholder?: string
+  disabled:boolean
 }
 const Input = ({
   handleChange,
   className,
-  placehlder = 'search your resources',
+  placeholder = 'search your resources',
+  disabled=false,
   ...others
 }: Props) => {
   return (
     <>
       <input
         {...others}
-        placeholder={placehlder}
+        placeholder={placeholder}
         className="block w-full border p-3"
         onChange={handleChange}
       />

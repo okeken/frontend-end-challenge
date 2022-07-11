@@ -1,5 +1,6 @@
 import { request } from 'graphql-request'
 import { txnQuery } from '../queries'
+import {NEXT_GRAPHQL_URL} from "../env"
 
 
 export const fetchTransaction = async (
@@ -9,8 +10,8 @@ export const fetchTransaction = async (
 
   try {
     const result = await request(
-      'http://localhost:3000/api/graphql',
-      // process.env.NEXT_GRAPHQL_URL as string,
+      // 'http://localhost:3000/api/graphql',
+      NEXT_GRAPHQL_URL as string,
       txnQuery,
       {
         query: queryWord,

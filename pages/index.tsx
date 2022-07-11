@@ -72,7 +72,8 @@ const Home: NextPage = () => {
       {' '}
       <div className="max-w-lg m-auto my-6">
         <Input
-          placehlder="Search by Txn Id, Receiver Address or Alias"
+        disabled={!loaded}
+          placeholder="Search by Txn Id, Receiver Address or Alias"
           handleChange={handleChange}
         />
       </div>
@@ -197,9 +198,8 @@ const Home: NextPage = () => {
    
         
             {_input}
-            {_filters}
-        
-      
+            {loaded && _filters}
+                 
 
         <div className="max-w-xl m-auto block mt-5">
           {_loading}
