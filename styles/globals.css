@@ -1,16 +1,36 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.radio-block input[type='radio'] {
+  display: none;
+}
+.radio-block input[type='radio']:checked + label {
+  background-color: rgb(74 222 128);
+  color: #fff;
+}
+.radio-block input[type='radio'] + label {
+  cursor: pointer;
+  margin-right: 1rem;
+  padding: 0.2rem 0.4rem;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/********************
+Loader Animation CSS
+********************/
+
+.loader div {
+  animation-duration: 0.5s;
 }
 
-* {
-  box-sizing: border-box;
+.loader div:first-child {
+  animation-delay: 0.1s;
+}
+
+.loader div:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.loader div:nth-child(3) {
+  animation-delay: 0.6s;
 }

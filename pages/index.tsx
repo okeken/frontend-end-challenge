@@ -1,72 +1,223 @@
 import type { NextPage } from 'next'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import useGetTxn from '../hooks/useGetTxn'
+import Input from '../components/input'
+import Loader from '../components/Loader'
+import { normalizedTxn } from '../utils'
+import TransactionComp from '../components/Transactions'
+
+const initTxnStatusCheck = {
+  pending: false,
+  success: false,
+  failed: false,
+  in: false,
+  out: false,
+  status: '',
+  type: '',
+}
 
 const Home: NextPage = () => {
+  const [userInput, setUserInput] = useState('')
+  const [filterTxn, setFilterTxn] = useState(initTxnStatusCheck)
+  const { status, type } = filterTxn
+  const { data, loading, error, fetchData, loaded } = useGetTxn(userInput)
+
+  const handleChange = (e: any) => {
+    setUserInput(e.target.value)
+  }
+
+  const fetchAgain = () => fetchData(userInput, { status: '', type: '' })
+  const _loading = !loaded && <Loader />
+  const _error = !!error && (
+    <div>
+      <div>
+        {' '}
+        Error Occurred, <button onClick={fetchAgain}>try again</button>{' '}
+      </div>
+    </div>
+  )
+  const _data = <TransactionComp data={normalizedTxn(data)} />
+
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterTxn((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+        [e.target.value]: true,
+      }
+    })
+  }
+  useEffect(() => {
+    fetchData(userInput, { status, type })
+  }, [status, type])
+
+  const handleClear = (input: string) => {
+    if (input == 'status') {
+      setFilterTxn((prev) => ({
+        ...prev,
+        pending: false,
+        success: false,
+        failed: false,
+        status: '',
+      }))
+    }
+    if (input == 'type') {
+      setFilterTxn((prev) => ({ ...prev, out: false, in: false, type: '' }))
+    }
+  }
+
+  const _input = (
+    <>
+      {' '}
+      <div className="max-w-lg m-auto my-6">
+        <Input
+          placehlder="Search by Txn Id, Receiver Address or Alias"
+          handleChange={handleChange}
+        />
+      </div>
+      {!!(userInput.length && !data.length) ? (
+        <h1 className="text-center">
+          No search results for &quot;{userInput}&quot;
+        </h1> 
+      ) : <h1 className="text-center">
+       { !!userInput.length && <>Results for &quot;{userInput}&quot;</>}
+    </h1>}
+        </>
+  )
+  const _filters = (
+    <>
+      <div className="radio-block m-auto max-w-xl flex  items-center w-full mt-6">
+        <div>
+          <span className="mr-5">Status</span>
+          <input
+            checked={filterTxn.pending}
+            type="radio"
+            id="pending-status"
+            name="status"
+            value="pending"
+            onChange={handleFilter}
+          />
+          <label htmlFor="pending-status" className="border">
+            Pending
+          </label>
+
+          <input
+            checked={filterTxn.success}
+            type="radio"
+            id="success-status"
+            name="status"
+            value="success"
+            onChange={handleFilter}
+          />
+          <label htmlFor="success-status" className="border">
+            Success
+          </label>
+          <input
+            checked={filterTxn.failed}
+            type="radio"
+            id="failed-status"
+            name="status"
+            value="failed"
+            onChange={handleFilter}
+          />
+          <label htmlFor="failed-status" className="border">
+            Failed
+          </label>
+        </div>
+        <div>
+          {!!filterTxn.status ? (
+            <>
+              {' '}
+              <button
+                onClick={() => handleClear('status')}
+                className="bg-gray-400 text-white sm:px-4 px-2  py-1 text-sm "
+              >
+                clear
+              </button>
+            </>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="radio-block m-auto max-w-xl flex items-center w-full mt-6">
+        <div>
+          <span className="mr-5">Type</span>
+          <input
+            checked={filterTxn.in}
+            type="radio"
+            id="in-type"
+            name="type"
+            value="in"
+            onChange={handleFilter}
+          />
+          <label htmlFor="in-type" className="border">
+            Received
+          </label>
+
+          <input
+            checked={filterTxn.out}
+            type="radio"
+            id="out-type"
+            name="type"
+            value="out"
+            onChange={handleFilter}
+          />
+          <label htmlFor="out-type" className="border">
+            Sent
+          </label>
+        </div>
+        <div>
+          {!!filterTxn.type ? (
+            <>
+              {' '}
+              <button
+                onClick={() => handleClear('type')}
+                className="bg-gray-400 text-white px-5 py-1 text-sm "
+              >
+                clear
+              </button>
+            </>
+          ) : null}
+        </div>
+      </div>
+    </>
+  )
+
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Create Next App</title>
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <div className='px-4'>
+        <h1 className="text-center text-4xl my-6">Transactions Lists</h1>
+   
+        
+            {_input}
+            {_filters}
+        
+      
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className="max-w-xl m-auto block mt-5">
+          {_loading}
+          {_error}
+          {_data}
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      </div>
     </div>
   )
 }
 
 export default Home
+
+// Tranasctions
+// filter by
+
+// transaction type - sent, received
+//  transaction status - pending, done, aborted,
+
+// search by
+// alias, txn id,receiver address
