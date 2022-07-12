@@ -10,7 +10,7 @@ body {
   font-family: 'Lato', sans-serif;
   background-color: #e5e5e5;
 }
-.radio-block input[type='radio']:checked, .radio-block input[type='radio']:focus  + label {
+ .radio-block input[type='radio']:focus + label, .radio-block input[type='radio']:checked  + label {
   background-color: #48b971;
   color: #fff;
 }
