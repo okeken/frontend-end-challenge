@@ -38,7 +38,6 @@ Open [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) with
 | Column         | Sample data                                |
 | -------------- | ------------------------------------------ |
 | Alias          | Don                                        |
-| Description    | This is a seed sample data                 |
 | Receiver       | 0x786BfF269d10812Ac61c0c197E3Fc4215cabc3d9 |
 | Amount         | 12                                         |
 | Status         | Success                                    |
