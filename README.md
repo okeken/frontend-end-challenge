@@ -37,7 +37,7 @@ Open [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) with
 
 | Column         | Sample data                                |
 | -------------- | ------------------------------------------ |
-| ALias          | Don                                        |
+| Alias          | Don                                        |
 | Description    | This is a seed sample data                 |
 | Receiver       | 0x786BfF269d10812Ac61c0c197E3Fc4215cabc3d9 |
 | Amount         | 12                                         |
@@ -65,15 +65,21 @@ alias:'Don'
 
 Click on the `Received` button to see all the transactions that add value to your account, or click on the `Sent` button to see all transactions that send value to other people from your account. These options are also available on `Type`
 
-Click on the `Pending`, `Success` or `Failed` Button to see corresponding status of the transactions in your account.
+Click on the `Pending`, `Success` or `Failed` Button to see the corresponding status of the transactions in your account.
 
 ### Sample Search
 
 ![Sample Search](https://github.com/okeken/frontend-end-challenge/blob/main/public/searchsample.png?raw=true)
 
+![Search ](https://github.com/okeken/frontend-end-challenge/blob/main/public/transact.png?raw=true)
+
 ## Additional Info
 
 This project is bootstrapped with Nextjs. I want to make sure both the frontend and backend run on the same server, since Nextjs has the capacity for a full-stack app, I decided to go with it.
+
+#### Accessible Layout
+
+The Current Layout transactions divs are tabbable and the filter options.
 
 ## Challenges
 
@@ -89,7 +95,7 @@ function name - `normalizedTxn`
 ## Additional Features
 
 - Select Element For Filtering: The `Status` and `Type` buttons can be substituted with a select element, such that when a user clicks on `Status` the select options open with `pending`, `success` and `failed` options, a user clicks on an option the select element returns to its normal state, the search operation occurs with the selected option. Same for `Type`
-- Pagination: This application can be approved by adding pagination to the list of data for improved UX experience.
+- Pagination: This application can be approved by adding pagination to the list of data to improve UX experience.
 - Custom Page Size: Provide a UI for users to customize the page size of the data returning from the backend
 
 ## Tools And Packages

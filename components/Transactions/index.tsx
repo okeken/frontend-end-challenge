@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { randomUUID } from 'crypto'
 import { splitAddress } from '../../utils'
 
 const TransactionComp = ({ data }: any) => {
@@ -6,13 +7,13 @@ const TransactionComp = ({ data }: any) => {
   return (
     <>
       {data?.map((i: any, idx: number) => (
-        <div key={idx + id}>
+        <div  key={idx+'items'} tabIndex={idx}>
           <div className="mb-6 border-2 bg-white p-2 rounded-lg  transition duration-300 ease-in-out hover:scale-105">
             <h1 className="mb-3 p-2 font-bold text-gray-500">{i.date}</h1>
             {i.data.map((i: any, idx: number) => (
               <>
                 <div
-                  key={idx + id}
+                  key={idx + 'sub-items'}
                   className="flex items-center border-t-2 border-gray-100 w-full justify-between p-2 "
                 >
                   <div className="flex items-center">

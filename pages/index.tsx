@@ -89,7 +89,7 @@ const Home: NextPage = () => {
     <>
       <div className="radio-block m-auto max-w-xl flex  items-center w-full mt-6">
         <div>
-          <span className="mr-5 text-gray-600 text-lg"><b>Status :</b></span>
+          <span className="mr-0 text-gray-600 text-lg"><b>Status : </b></span>
           <input
             checked={filterTxn.status == 'pending'}
             type="radio"
@@ -142,7 +142,7 @@ const Home: NextPage = () => {
 
       <div className="radio-block m-auto max-w-xl flex items-center w-full mt-6">
         <div>
-          <span className="mr-5 text-gray-600 text-l"><b>Type : </b></span>
+          <span className="mr-5 text-gray-600 text-lg"><b>Type : </b></span>
           <input
             checked={filterTxn.type == 'in'}
             type="radio"
@@ -225,7 +225,6 @@ export default Home
 
 // Tranasctions
 // filter by
-
 // transaction type - sent, received
 //  transaction status - pending, done, aborted,
 
